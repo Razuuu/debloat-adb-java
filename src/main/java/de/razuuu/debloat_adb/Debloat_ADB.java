@@ -17,7 +17,6 @@
 package de.razuuu.debloat_adb;
 
 import de.razuuu.debloat_adb.options.DebloatOption;
-import de.razuuu.debloat_adb.options.InstallAppsOption;
 
 import java.util.Scanner;
 
@@ -29,38 +28,28 @@ public class Debloat_ADB {
 
         Util.baseText("Debloat ADB", "A2L5E0X1 + Razuuu");
 
-        printMenu();
+        System.out.println("Select an option\n");
 
         while (true) {
             try {
-                Scanner scanner = new Scanner(System.in);
-                int select = scanner.nextInt();
+                System.out.println("(D)ebloat | (I)nstall Apps | (R)evert Debloat | (E)xit");
+                System.out.print("» ");
 
-                switch (select) {
-                    case 1 -> DebloatOption.startDebloat();
-                    case 2 -> InstallAppsOption.startInstall();
-                    case 3 -> {
+                Scanner scanner = new Scanner(System.in);
+                String reader = scanner.next();
+
+                switch (reader) {
+                    case "d" -> DebloatOption.startDebloat();
+                    case "e" -> {
                         System.out.println("Exit!");
                         exit(0);
                     }
+                    default -> {
+                        System.out.println("No option selected!");
+                    }
                 }
-            } catch (Exception exception) {
-                // ignore exception
+            } catch (Exception ignored) {
             }
-        }
-    }
-
-    private static void printMenu() {
-        System.out.println("Select an option\n");
-
-        String[] options = {
-                "(1) Debloat",
-                "(2) Install Apps",
-                "(3) Exit"
-        };
-
-        for (String option : options) {
-            System.out.println(option);
         }
     }
 
